@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beautiful HTML Table</title>
+    <style>
+      /* CSS Styles for the table */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+      }
+
+      table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #007bff;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 14px;
+        border-bottom: 2px solid #ddd;
+      }
+
+      td {
+        border-bottom: 1px solid #ddd;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      tr:hover {
+        background-color: #ddd;
+      }
+
+      /* Responsive Design */
+      @media only screen and (max-width: 768px) {
+        table {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HTML Table with Sample Data -->
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Country</th>
+          <th>Email</th>
+          <th>Occupation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Sample Data -->
+        <tr>
+          <td>John Doe</td>
+          <td>30</td>
+          <td>USA</td>
+          <td>john@example.com</td>
+          <td>Software Engineer</td>
+        </tr>
+        <tr>
+          <td>Jane Smith</td>
+          <td>25</td>
+          <td>Canada</td>
+          <td>jane@example.com</td>
+          <td>Graphic Designer</td>
+        </tr>
+        <tr>
+          <td>David Brown</td>
+          <td>35</td>
+          <td>UK</td>
+          <td>david@example.com</td>
+          <td>Marketing Manager</td>
+        </tr>
+        <!-- Adding more sample data -->
+        <tr>
+          <td>Emily Johnson</td>
+          <td>28</td>
+          <td>Australia</td>
+          <td>emily@example.com</td>
+          <td>Teacher</td>
+        </tr>
+        <tr>
+          <td>Michael Garcia</td>
+          <td>40</td>
+          <td>Spain</td>
+          <td>michael@example.com</td>
+          <td>Architect</td>
+        </tr>
+        <tr>
+          <td>Sarah Lee</td>
+          <td>32</td>
+          <td>South Korea</td>
+          <td>sarah@example.com</td>
+          <td>Financial Analyst</td>
+        </tr>
+        <tr>
+          <td>Thomas Nguyen</td>
+          <td>29</td>
+          <td>Vietnam</td>
+          <td>thomas@example.com</td>
+          <td>Doctor</td>
+        </tr>
+        <tr>
+          <td>Olivia Martinez</td>
+          <td>27</td>
+          <td>Mexico</td>
+          <td>olivia@example.com</td>
+          <td>Artist</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

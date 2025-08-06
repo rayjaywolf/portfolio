@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/mouse-follower@1/dist/mouse-follower.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css" />
+  <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Rehan Jinta</title>
+  <style>
+    .mf-cursor::before {
+      transform: scale(0.2);
+    }
+
+    .mf-cursor.-menu::before {
+      transform: scale(1.4);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dropdown">
+    <a href="#" class="link"><span data-text="Home">Home</span></a>
+    <a href="#" class="link"><span data-text="About">About</span></a>
+    <a href="#" class="link"><span data-text="Projects">Projects</span></a>
+    <a href="#" class="link"><span data-text="Contact">Contact</span></a>
+  </div>
+  <header>
+    <div class="logo">rj.</div>
+    <div id="menu" data-cursor="-menu">
+      <div id="menuImg">
+        <div id="line1"></div>
+        <div id="line2"></div>
+      </div>
+    </div>
+  </header>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/mouse-follower@1/dist/mouse-follower.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+  <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    const cursor = new MouseFollower({
+      speed: 0.4,
+      skewing: 1.5,
+      stickDelta: 0.15,
+    });
+
+    const mf = document.querySelector(".mf-cursor");
+    const menu = document.getElementById("menu");
+    const menuImg = document.getElementById("menuImg");
+    const line1 = document.getElementById("line1");
+    const line2 = document.getElementById("line2");
+
+    const tl = gsap.timeline({ paused: true });
+
+    tl.to("#line1", {
+      // duration: 0.5,
+      y: 5,
+      ease: "power4.inOut",
+    })
+      .to(
+        "#line2",
+        {
+          // duration: 0.5,
+          y: -5,
+          ease: "power4.inOut",
+        },
+        "-=0.5"
+      )
+      .to("#line1", {
+        // duration: 0.5,
+        rotation: 45,
+        ease: "power4.inOut",
+      })
+      .to(
+        "#line2",
+        {
+          // duration: 0.5,
+          rotation: -45,
+          ease: "power4.inOut",
+        },
+        "-=0.5"
+      );
+
+    function cursorPos(e) {
+      var x = e.clientX;
+      var y = e.clientY;
+      var menux = menuImg.getBoundingClientRect().x;
+      var menuy = menuImg.getBoundingClientRect().y;
+      var movex = x - menux;
+      var movey = y - menuy;
+      var movexlimit = movex / 5;
+      var moveylimit = movey / 6;
+      if (x > movex && y > 10) {
+        menuImg.style.transform = `translate(${movexlimit}px, ${moveylimit}px)`;
+        menuImg.style.transition = `all 0.1s`;
+      }
+    }
+
+    window.onload = () => {
+      menu.click();
+    };
+
+    const dropdown = document.querySelector(".dropdown");
+    const tl2 = gsap.timeline({
+      onComplete: () => {
+        tl3.play();
+      },
+    });
+
+    tl2.to(dropdown, {
+      duration: 1,
+      top: "0",
+      ease: "power4.inOut",
+    });
+
+    menu.addEventListener("mouseenter", () => {
+      cursor.setStick(menu);
+      menu.classList.add("-menu");
+      mf.style.zIndex = 10;
+      menu.addEventListener("mousemove", cursorPos);
+      menu.style.cursor = "pointer";
+      line1.style.backgroundColor = "white";
+      line2.style.backgroundColor = "white";
+      menuImg.style.animation = `none`;
+    });
+    menu.addEventListener("mouseleave", () => {
+      cursor.removeStick();
+      menu.classList.remove("-menu");
+      menuImg.style.transform = `translate(0px, 0px)`;
+      menuImg.style.transition = `all 0.5s`;
+      mf.style.zIndex = 1;
+      menu.style.cursor = "none";
+      line1.style.backgroundColor = "black";
+      line2.style.backgroundColor = "black";
+      menu.classList.add("animate__animated", "animate__wobble");
+      menu.addEventListener("animationend", () => {
+        menu.classList.remove("animate__animated", "animate__wobble");
+      });
+    });
+    menu.addEventListener("click", () => {
+      tl.reversed() ? tl.play() : tl.reverse();
+      tl2.reversed() ? tl2.play() : tl2.reverse();
+      if (tl2.reversed()) {
+        tl3.timeScale(1.75);
+        tl3.reverse();
+      }
+    });
+
+    const tl3 = gsap.timeline({ paused: true });
+
+    tl3.from(".link span", {
+      duration: 0.99,
+      y: 80,
+      skewY: 10,
+      stagger: 0.05,
+      ease: "power4.inOut",
+    });
+  </script>
+</body>
+
+</html>

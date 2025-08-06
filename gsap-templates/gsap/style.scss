@@ -1,0 +1,126 @@
+@font-face {
+  font-family: "Mori";
+  src: url(/assets/fonts/PPMori-SemiBold.woff2);
+  font-weight: 600;
+  font-style: bold;
+}
+@font-face {
+  font-family: "Mori";
+  src: url(/assets/fonts/PPMori-Regular.woff2);
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ES Rebond Grotesque";
+  src: url(/assets/fonts/ESRebondGrotesqueTRIAL-Regular.woff2);
+  font-weight: normal;
+  font-style: normal;
+}
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+
+$primary-font: "Mori", sans-serif;
+$secondary-font: "ES Rebond Grotesque", sans-serif;
+$inter: "Inter", sans-serif;
+$bg-color: #f14c0a;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+}
+// .ele {
+//   width: 500px;
+//   height: 500px;
+//   background-color: $bg-color;
+// }
+
+// .container {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: row;
+//   background-color: yellow;
+//   padding: 30px 0;
+//   font-family: $primary-font;
+//   font-weight: 600;
+//   font-size: 24px;
+//   .wrapper {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: row;
+//     .item {
+//       padding: 0 20px;
+//     }
+//   }
+// }
+
+// .container2 {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: row;
+//   background-color: plum;
+//   padding: 30px 0;
+//   font-family: $primary-font;
+//   font-weight: 600;
+//   font-size: 24px;
+//   .wrapper2 {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: row;
+//     .item2 {
+//       padding: 0 20px;
+//     }
+//   }
+// }
+
+#smooth-content {
+  overflow: visible;
+  width: 100%;
+  /* set a height because the contents are position: absolute, thus natively there's no height */
+  height: 100%;
+}
+
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .line {
+    width: 70%;
+    height: 80px;
+    position: relative;
+    overflow: hidden;
+    span {
+      position: absolute;
+      font-size: 3rem;
+      line-height: 4.2rem;
+      font-weight: 600;
+      font-family: $primary-font;
+    }
+  }
+}
+
+.container-2 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 200px;
+  gap: 50px;
+  .box1 {
+    width: 300px;
+    height: 300px;
+    background-color: blue;
+  }
+  .box2 {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+  }
+}

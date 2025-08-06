@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="1" style="height: 100%; background-color: red"></section>
+    <section class="2" style="height: 100%; background-color: blue"></section>
+    <div class="container">
+      <div class="line">
+        <span>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto
+          nesciunt quibusdam praesentium sint.
+        </span>
+      </div>
+      <div class="line">
+        <span>
+          Error tenetur delectus illum, cupiditate quo tempore quod sequi
+          corrupti autem odio, reprehenderit molestias.
+        </span>
+      </div>
+      <div class="line">
+        <span>
+          Qui dolore dolorem tempore fuga dicta nostrum laboriosam non
+          voluptatibus?
+        </span>
+      </div>
+    </div>
+    <section class="1" style="height: 100%; background-color: red"></section>
+    <div class="container-2" style="height: 100%">
+      <div class="box1"></div>
+      <div class="box2"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="ScrollSmoother.min.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+      const tl = gsap.timeline();
+
+      tl.from(".line span", 1.8, {
+        y: 150,
+        ease: "power4.out",
+        delay: 1,
+        skewY: 7,
+        stagger: {
+          amount: 0.3,
+        },
+        scrollTrigger: {
+          trigger: ".line",
+          start: "top 90%",
+          end: "bottom 10%",
+          scrub: 1,
+          markers: true,
+        },
+      });
+
+      const tl2 = gsap.timeline({
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: ".container-2",
+          start: "top 50%",
+          end: "bottom 0%",
+          markers: true,
+        },
+      });
+      const tl3 = gsap.timeline({
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: ".container-2",
+          start: "top 50%",
+          end: "bottom 0%",
+          markers: true,
+          scrub: 1,
+          end: "+=1000px",
+        },
+      });
+
+      tl2.to(".container-2 .box1", {
+        rotation: 360,
+        duration: 1,
+      });
+      tl2.to(
+        ".container-2 .box1",
+        {
+          scale: 1.5,
+          x: -150,
+        },
+        "<50%"
+      );
+      tl3.to(".container-2 .box2", {
+        rotation: 360,
+        duration: 1,
+      });
+      tl3.to(
+        ".container-2 .box2",
+        {
+          scale: 1.5,
+          x: 150,
+        },
+        "<50%"
+      );
+    </script>
+  </body>
+</html>

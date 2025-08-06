@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Hero</title>
+</head>
+
+<body>
+  <div class="loading"></div>
+  <div class="contact">
+    <img src="contact.svg" class="round" alt="" />
+    <img src="smiley.svg" class="smiley" alt="" />
+  </div>
+  <div class="container">
+    <div class="hero-text">
+      <div class="text">
+        <h1 class="left">Creative</h1>
+        <video src="video.mp4" class="video" autoplay loop></video>
+      </div>
+      <div class="text">
+        <h1 class="right">Website</h1>
+      </div>
+      <div class="text">
+        <h1 class="left">Developer</h1>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tl = gsap.timeline({});
+    tl.from(".video", {
+      duration: 1.5,
+      width: "120px",
+      opacity: 0,
+      borderRadius: "1000px",
+      ease: "power4.inOut",
+    });
+    tl.to(
+      ".text h1",
+      {
+        duration: 0.75,
+        y: 0,
+        stagger: 0.1,
+        // ease: "power4.inOut",
+      },
+      "<0.5"
+    );
+
+    const rotate = gsap.timeline({});
+    rotate.to(".round", {
+      duration: 10,
+      rotate: 360,
+      repeat: -1,
+      ease: "none",
+    });
+
+    const tl2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".hero-text",
+        start: "top 0%",
+        end: "bottom 5%",
+        scrub: 1,
+        markers: true,
+      },
+    });
+
+    tl2.to(".text .left", {
+      // duration: 0.5,
+      x: "-100%",
+      opacity: 0,
+      skewX: 20,
+      ease: "power4.Out",
+    });
+
+    tl2.to(
+      ".text .right",
+      {
+        // duration: 0.5,
+        x: "100%",
+        opacity: 0,
+        skewX: 20,
+        ease: "power4.Out",
+      },
+      "<"
+    );
+
+    const tl3 = gsap.timeline({ paused: true });
+
+    tl3.to(".loading", {
+      height: 1000,
+      duration: 0.8,
+      ease: "power4.inOut",
+    });
+
+    const right = document.querySelector(".right");
+
+    right.addEventListener("click", () => {
+      tl3.play();
+      const scale = gsap.timeline({});
+      scale.to(".hero-text", {
+        duration: 0.5,
+        scale: 0.9,
+        ease: "power4.Out",
+      });
+      setTimeout(() => {
+        window.location.href = "page.html";
+      }, 1000);
+    });
+  </script>
+</body>
+
+</html>
