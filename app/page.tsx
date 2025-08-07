@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import { div } from "three/tsl";
+import RecentWorks from "@/components/RecentWorks";
 
 const Scene = dynamic(() => import("@/components/scene"), {
   loading: () => (
@@ -43,7 +43,7 @@ export default function Page() {
       >
         <Scene />
       </Suspense>
-      <div className="h-screen w-full bg-white"></div>
+      <RecentWorks />
     </div>
   );
 }
